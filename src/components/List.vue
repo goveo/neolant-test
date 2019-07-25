@@ -11,10 +11,7 @@
 					{{task}}
 				</div>
 			</li>
-
 			<input v-model="newTask" type="text" v-on:keyup.enter="createTask">
-			
-			
 		</ul>
 	</div>
 </template>
@@ -37,7 +34,6 @@ export default {
 			if (index >= 0) this.list.splice(index, 1);
 		},
 		createTask() {
-			console.log("create task")
 			if (this.list.indexOf(this.newTask) === -1) {
 				this.list.push(this.newTask);
 			}
