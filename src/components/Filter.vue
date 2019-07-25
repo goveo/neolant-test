@@ -10,7 +10,7 @@
 		</div>
 		<ul>
 			<li v-for="item in filteredList" :key="item">
-				<text-highlight :queries="[query]" v-if="highlight == true">{{ item }}</text-highlight>
+				<text-highlight :queries="[query]" v-if="highlight">{{ item }}</text-highlight>
 				<span v-else>{{ item }}</span>
 			</li>
 		</ul>
@@ -34,11 +34,7 @@ export default {
 			if(!this.query) {
 				return this.codes;
 			}
-			this.codes.forEach((item, index) => {
-				item.replace(new RegExp(this.query, "gi"), match => {
-					return '<span class="highlightText">' + match + '</span>';
-				});
-			});
+			
 			
 		}
 	},
@@ -50,8 +46,7 @@ export default {
 				});
 			} else {
 				return this.codes;
-			}
-			
+			}	
 		}
   }
 }

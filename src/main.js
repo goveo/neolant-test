@@ -7,6 +7,7 @@ import AppNavbar from './components/Navbar.vue';
 
 import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router';
+import VueResource from 'vue-resource'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -17,18 +18,21 @@ Vue.component('text-highlight', TextHighlight);
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSave } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-library.add(faFilter, faLightbulb);
+library.add(faFilter, faLightbulb, faPencilAlt, faSave);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;
 
-Vue.use(BootstrapVue);
 
 Vue.component('AppNavbar', AppNavbar);
 Vue.component('AppList', AppList);
 Vue.component('AppFilter', AppFilter);
 Vue.component('AppAbout', AppAbout);
 
+Vue.use(VueResource);
+Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 
 var router = new VueRouter({

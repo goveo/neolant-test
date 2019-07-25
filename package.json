@@ -18,6 +18,7 @@
     "bootstrap-vue": "^2.0.0-rc.27",
     "glyphicons": "^0.2.0",
     "vue": "^2.6.10",
+    "vue-resource": "^1.5.1",
     "vue-router": "^3.0.7",
     "vue-text-highlight": "^2.0.8"
   },
