@@ -1,7 +1,21 @@
 <template>
 	<div id="list">
-		<h1>{{ msg }}</h1>
-		<h2>List</h2>
+		<h1>Список Дел</h1>
+		<ul id="todo">
+
+			<li v-for="task in list" :key="task">
+				<div class="row">
+					<button type="button" class="btn close" @click="removeTask(task)">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					{{task}}
+				</div>
+			</li>
+
+			<input v-model="newTask" type="text" v-on:keyup.enter="createTask">
+			
+			
+		</ul>
 	</div>
 </template>
 
@@ -10,11 +24,45 @@ export default {
 	name: 'list',
 	data () {
 		return {
-			msg: 'LIST'
+			newTask: "",
+			list: [
+				"task",
+				"one more task"
+			]
+		}
+	},
+	methods: {
+		removeTask(task) {
+			let index = this.list.indexOf(task);
+			if (index >= 0) this.list.splice(index, 1);
+		},
+		createTask() {
+			console.log("create task")
+			if (this.list.indexOf(this.newTask) === -1) {
+				this.list.push(this.newTask);
+			}
+			this.newTask = "";
 		}
 	}
 }
 </script>
 
 <style>
+li {
+    list-style-type: none;
+}
+
+#todo {
+	justify-content: space-between;  
+}
+
+.close {
+	padding-top: 0px
+}
+
+.btn:focus,.btn:active {
+   outline: none;
+   box-shadow: none;
+}
+
 </style>

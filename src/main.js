@@ -5,7 +5,13 @@ import AppFilter from './components/Filter.vue';
 import AppAbout from './components/About.vue';
 import AppNavbar from './components/Navbar.vue';
 
+import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router';
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
 
 Vue.component('AppNavbar', AppNavbar);
 Vue.component('AppList', AppList);

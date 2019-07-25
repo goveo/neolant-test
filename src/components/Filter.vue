@@ -1,7 +1,7 @@
 <template>
 	<div id="filter">
 		<h1>{{ msg }}</h1>
-		<h2>List</h2>
+		<h2>Filter</h2>
 	</div>
 </template>
 
