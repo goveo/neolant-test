@@ -1,9 +1,7 @@
 <template>
 	<div id="app">
-		<img src="./assets/logo.png">
 		<h1>{{ msg }}</h1>
-		<h2>Index</h2>
-		<router-link to="/list">Mathshop</router-link>
+		<h2>Главная страница</h2>
 	</div>
 </template>
 
@@ -12,7 +10,7 @@ export default {
 	name: 'app',
 	data () {
 		return {
-			msg: 'Welcome to Your Vue.js App'
+			msg: 'Neolant test'
 		}
 	}
 }
