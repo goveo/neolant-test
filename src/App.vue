@@ -1,7 +1,8 @@
 <template>
-	<div id="app">
-		<h1>{{ msg }}</h1>
-		<h2>Главная страница</h2>
+	<div id="app" class="container">
+		<h1>Главная страница</h1>
+		<h2>Тестовое задание</h2>
+		<a href="http://rgp.neolant.com/static/test-0/#!/" target="_blank"><h3>Условие тестового задания</h3></a>
 	</div>
 </template>
 
@@ -9,9 +10,7 @@
 export default {
 	name: 'app',
 	data () {
-		return {
-			msg: 'Neolant test'
-		}
+		return {}
 	}
 }
 </script>

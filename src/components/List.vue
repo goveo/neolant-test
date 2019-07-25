@@ -1,5 +1,5 @@
 <template>
-	<div id="list">
+	<div id="list" class="container">
 		<h1>Список Дел</h1>
 		<ul id="todo">
 
@@ -11,7 +11,7 @@
 					{{task}}
 				</div>
 			</li>
-			<input v-model="newTask" type="text" v-on:keyup.enter="createTask">
+			<input v-model="newTask" type="text" @keyup.enter="createTask">
 		</ul>
 	</div>
 </template>

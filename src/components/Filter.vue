@@ -1,5 +1,5 @@
 <template>
-	<div id="filter">
+	<div id="filter" class="container">
 		<div class="row">
 			<h1 class="col-sm">Список</h1>
 			<span class="col-sm">
@@ -52,7 +52,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 li {
     list-style-type: none;
 }

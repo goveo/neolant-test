@@ -1,5 +1,5 @@
 <template>
-	<div id="about">
+	<div id="about" class="container">
 		<div id="name">
 			<h1 v-show="!editing">
 				<button class="icon btn" @click="changeName">
@@ -11,7 +11,7 @@
 				<button class="icon btn" @click="saveName">
 					<font-awesome-icon icon="save"/>
 				</button>
-				<input ref="name" type="text" v-model="name"/>
+				<input ref="name" type="text" v-model="name" @keyup.enter="saveName"/>
 			</h1>			
 		</div>
 
@@ -31,19 +31,19 @@
 
 		<div id="birthplace">
 			<h3>Место рождения:</h3>
-			<select type="text" id="country" @change="updateCountry($event)">
+			<select type="text" id="country" @change="updateCountry($event)" :value="countries[countryIndex].name">
 				<option v-for="country in countries" :key="country.name">
 					{{country.name}}
 				</option>
 			</select>
 
-			<select type="text" id="region" @change="updateRegion($event)">
+			<select type="text" id="region" @change="updateRegion($event)" :value="countries[countryIndex].regions[regionIndex].name">
 				<option v-for="region in countries[countryIndex].regions" :key="region.name">
 					{{region.name}}
 				</option>
 			</select>
 
-			<select type="text" id="town" @change="updateTown($event)">
+			<select type="text" id="town" @change="updateTown($event)" :value="countries[countryIndex].regions[regionIndex].towns[townIndex].name">
 				<option v-for="town in countries[countryIndex].regions[regionIndex].towns" :key="town.name">
 					{{town.name}}
 				</option>
@@ -71,8 +71,8 @@ export default {
 			editing: false,
 			email: "",
 			countries: countries,
-			countryIndex: localStorage.getItem("saved.countryIndex") || 0,
-			regionIndex: localStorage.getItem("saved.regionIndex") || 0,
+			countryIndex: 0,
+			regionIndex: 0,
 			townIndex: 0,
 			birthday: null,
 			about: ""
@@ -87,23 +87,16 @@ export default {
 			this.editing = false;
 		},
 		updateCountry(event) {
-			console.log(event)
 			this.countryIndex = event.target.selectedIndex;
-			console.log("this.countryIndex : ", this.countryIndex);
-			
 			this.regionIndex = 0
 			this.townIndex = 0
 		},
 		updateRegion(event) {
-			console.log(event)
 			this.regionIndex = event.target.selectedIndex;
-			console.log("this.regionIndex : ", this.regionIndex);
 			this.townIndex = 0
 		},
 		updateTown(event) {
-			console.log(event)
 			this.townIndex = event.target.selectedIndex;
-			console.log("this.townIndex : ", this.townIndex);
 		},
 		getCountries() {
 			// let link = "http://rgp.neolant.com/static/test-0/data/countries.json"
@@ -130,13 +123,18 @@ export default {
 		},
 		getSavedData() {
 			const saved = JSON.parse(localStorage.getItem("saved"));
-			this.name = saved.name || "Вася Пупкин";
-			this.email = saved.email;
-			this.birthday = saved.birthday;
-			this.countryIndex = saved.countryIndex || 0;
-			this.regionIndex = saved.regionIndex || 0;
-			this.townIndex = saved.townIndex || 0;
-			this.about = saved.about;
+			if (saved) {
+				this.name = saved.name || "Вася Пупкин";
+				this.email = saved.email;
+				this.birthday = saved.birthday;
+				this.countryIndex = saved.countryIndex || 0;
+				this.regionIndex = saved.regionIndex || 0;
+				this.townIndex = saved.townIndex || 0;
+				this.about = saved.about;
+			}
+			console.log("this.countryIndex : ", this.countryIndex)
+			console.log("this.regionIndex : ", this.regionIndex)
+			console.log("this.townIndex : ", this.townIndex)
 		}
 	},
 	watch: {
@@ -150,8 +148,10 @@ export default {
     		return !/^[a-zA-Z0-9_.-]+@neolant\.ru$/.test(this.email);
 		}
 	},
-	mounted: function() {
+	mounted() {
 		this.getCountries();
+	},
+	created() {
 		this.getSavedData();
 	}
 }
